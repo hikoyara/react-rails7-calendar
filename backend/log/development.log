@@ -23,3 +23,51 @@ Processing by Rails::WelcomeController#index as HTML
 Completed 200 OK in 135ms (Views: 38.4ms | ActiveRecord: 0.0ms | Allocations: 7091)
 
 
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (3.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (40.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS `api_development`[0m
+  [1m[35m (3.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS `api_test`[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE DATABASE `api_development` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE DATABASE `api_test` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (17.3ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  [1m[35m (11.7ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT GET_LOCK('5878493172211724820', 0)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.8ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Migrating to DeviseTokenAuthCreateUsers (20230821091440)
+  [1m[35m (17.8ms)[0m  [1m[35mCREATE TABLE `users` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `provider` varchar(255) DEFAULT 'email' NOT NULL, `uid` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime(6), `allow_password_change` tinyint(1) DEFAULT FALSE, `remember_created_at` datetime(6), `confirmation_token` varchar(255), `confirmed_at` datetime(6), `confirmation_sent_at` datetime(6), `unconfirmed_email` varchar(255), `name` varchar(255), `nickname` varchar(255), `image` varchar(255), `email` varchar(255), `tokens` text, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[35m (27.5ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_email` ON `users` (`email`)[0m
+  [1m[35m (11.3ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_uid_and_provider` ON `users` (`uid`, `provider`)[0m
+  [1m[35m (13.2ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_reset_password_token` ON `users` (`reset_password_token`)[0m
+  [1m[35m (16.5ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_confirmation_token` ON `users` (`confirmation_token`)[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::SchemaMigration Create (7.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20230821091440')[0m
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2023-08-21 09:15:29.004249', '2023-08-21 09:15:29.004249')[0m
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT RELEASE_LOCK('5878493172211724820')[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Started GET "/" for 172.19.0.1 at 2023-08-21 09:15:38 +0000
+  
+NoMethodError (undefined method `mount_devise_token_auth_for' for #<ActionDispatch::Routing::Mapper:0x00007f2d3688a828 @set=#<ActionDispatch::Routing::RouteSet:0x00007f2d37779438>, @draw_paths=[#<Pathname:/api/config/routes>], @scope=#<ActionDispatch::Routing::Mapper::Scope:0x00007f2d36ac4008 @hash={:path_names=>{:new=>"new", :edit=>"edit"}}, @parent=#<ActionDispatch::Routing::Mapper::Scope:0x00007f2d361b4bc0 @hash=nil, @parent=nil, @scope_level=nil>, @scope_level=nil>, @concerns={}>):
+  
+config/routes.rb:2:in `block in <main>'
+config/routes.rb:1:in `<main>'
+Started GET "/favicon.ico" for 172.19.0.1 at 2023-08-21 09:15:38 +0000
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/" for 172.20.0.1 at 2023-08-21 09:19:37 +0000
+  [1m[36mActiveRecord::SchemaMigration Pluck (6.8ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/bundle/gems/railties-7.0.7/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/bundle/gems/railties-7.0.7/lib/rails/templates/rails/welcome/index.html.erb (Duration: 12.4ms | Allocations: 631)
+Completed 200 OK in 1452ms (Views: 43.5ms | ActiveRecord: 0.0ms | Allocations: 15967)
+
+
