@@ -2,14 +2,23 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
+import SignUp from "./routes/SignUp";
+// import Calendar from "./routes/calendar";
 import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>
         <ChakraProvider>
-            <App />
+            <BrowserRouter>
+                <Routes>
+                    <Route index element={<App />} />
+                    {/* <Route path="calendar" element={<Calendar />} /> */}
+                    <Route path="signUp" element={<SignUp />} />
+                </Routes>
+            </BrowserRouter>
         </ChakraProvider>
     </React.StrictMode>
 );
