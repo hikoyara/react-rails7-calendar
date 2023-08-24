@@ -71,3 +71,61 @@ Processing by Rails::WelcomeController#index as HTML
 Completed 200 OK in 1452ms (Views: 43.5ms | ActiveRecord: 0.0ms | Allocations: 15967)
 
 
+Started GET "/" for 172.24.0.1 at 2023-08-23 07:06:06 +0000
+  [1m[36mActiveRecord::SchemaMigration Pluck (9.9ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/bundle/gems/railties-7.0.7/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/bundle/gems/railties-7.0.7/lib/rails/templates/rails/welcome/index.html.erb (Duration: 9.3ms | Allocations: 631)
+Completed 200 OK in 419ms (Views: 40.8ms | ActiveRecord: 0.0ms | Allocations: 16041)
+
+
+Started POST "/auth" for 172.18.0.1 at 2023-08-24 00:40:51 +0000
+  [1m[36mActiveRecord::SchemaMigration Pluck (5.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Auth::RegistrationsController#create as HTML
+  Parameters: {"email"=>"user1@test.com", "password"=>"[FILTERED]", "registration"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :registration. Context: { controller: Auth::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x00007fa36e2924f8>, params: {"email"=>"user1@test.com", "password"=>"[FILTERED]", "controller"=>"auth/registrations", "action"=>"create", "registration"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]"}} }[0m
+[31mUnpermitted parameter: :registration. Context: { controller: Auth::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x00007fa36e2924f8>, params: {"email"=>"user1@test.com", "password"=>"[FILTERED]", "controller"=>"auth/registrations", "action"=>"create", "registration"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]"}} }[0m
+[31mUnpermitted parameter: :registration. Context: { controller: Auth::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x00007fa36e2924f8>, params: {"email"=>"user1@test.com", "password"=>"[FILTERED]", "controller"=>"auth/registrations", "action"=>"create", "registration"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`email` = 'user1@test.com' AND `users`.`provider` = 'email' LIMIT 1[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO `users` (`provider`, `uid`, `encrypted_password`, `reset_password_token`, `reset_password_sent_at`, `allow_password_change`, `remember_created_at`, `confirmation_token`, `confirmed_at`, `confirmation_sent_at`, `unconfirmed_email`, `name`, `nickname`, `image`, `email`, `tokens`, `created_at`, `updated_at`) VALUES ('email', 'user1@test.com', '$2a$12$yApsh2R1GK2j/1kFr6f.5eXA7mSp25JJauKGKuUhAsXf294hQIDu6', NULL, NULL, FALSE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'user1@test.com', NULL, '2023-08-24 00:40:51.983764', '2023-08-24 00:40:51.983764')[0m
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE `users` SET `users`.`tokens` = '{\"MCDBHgL4PcpFAo0Vwdy4pA\":{\"token\":\"$2a$10$JMVpaf.nrM/uiRQF1NE3COi8uzuzu3rF9XrkCPzbpamb3UknKXUUm\",\"expiry\":1694047252}}', `users`.`updated_at` = '2023-08-24 00:40:52.073434' WHERE `users`.`id` = 1[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 467ms (Views: 0.2ms | ActiveRecord: 11.8ms | Allocations: 27725)
+
+
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-08-24 00:41:04 +0000
+Processing by Auth::SessionsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 71ms (Views: 0.4ms | ActiveRecord: 1.3ms | Allocations: 2535)
+
+
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-08-24 00:41:04 +0000
+Processing by Auth::SessionsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 9ms (Views: 0.5ms | ActiveRecord: 1.3ms | Allocations: 1981)
+
+
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-08-24 00:41:21 +0000
+Processing by Auth::SessionsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 0.6ms | Allocations: 1990)
+
+
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-08-24 00:41:21 +0000
+Processing by Auth::SessionsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 1.0ms | Allocations: 1980)
+
+
