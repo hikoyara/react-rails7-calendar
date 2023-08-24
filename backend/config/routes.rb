@@ -7,7 +7,7 @@ Rails.application.routes.draw do
         resources :sessions, only: %i[index]
     end
 
-    get 'calendar_events', to: 'calendar_events#index'
-    post 'calendar_events', to: 'calendar_events#create'
-    put 'calendar_events', to: 'calendar_events#update'
+    get '/calendar_events', to: 'calendar_events#index'
+    post '/calendar_events', to: 'calendar_events#create'
+    put '/calendar_events/:id', to: 'calendar_events#update'
 end

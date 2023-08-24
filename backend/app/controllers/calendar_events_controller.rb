@@ -16,7 +16,7 @@ class CalendarEventsController < ApplicationController
 
     def update
         calendar_event = CalendarEvent.find(params[:id])
-        calendar_event = calendar_even.update!(calendar_event_params)
+        calendar_event = calendar_event.update!(calendar_event_params)
         render json: calendar_event
     end
 
