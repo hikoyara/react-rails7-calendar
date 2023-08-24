@@ -14,8 +14,13 @@ class CalendarEventsController < ApplicationController
         render json: calendar_event
     end
 
-    private
+    def update
+        calendar_event = CalendarEvent.find(params[:id])
+        calendar_event = calendar_even.update!(calendar_event_params)
+        render json: calendar_event
+    end
 
+    private
     def calendar_event_params
         params.require(:calendar_event).permit(:title, :description, :start_date, :end_date)
     end
