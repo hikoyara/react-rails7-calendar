@@ -1,6 +1,6 @@
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, Input, Text } from "@chakra-ui/react";
+import { Flex, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, Input, Text } from "@chakra-ui/react";
 
-export const UpdateEventModal = ({ isOpen, onClose, updateEvent, updateTitle, updateEventId, updateDescription, updateStartDate, updateEndDate, setTitle, setDescription, setStartDate, setEndDate }) => {
+export const UpdateEventModal = ({ isOpen, onClose, updateEvent, updateTitle, updateEventId, updateDescription, updateStartDate, updateEndDate, setTitle, setDescription, setStartDate, setEndDate, deleteEvent }) => {
     return (
         <Modal isOpen={isOpen} onClose={onClose} isCentered>
             <ModalOverlay />
@@ -19,21 +19,34 @@ export const UpdateEventModal = ({ isOpen, onClose, updateEvent, updateTitle, up
                 </ModalBody>
 
                 <ModalFooter>
-                    <Button
-                        colorScheme="blue"
-                        onClick={() => {
-                            updateEvent({
-                                updateEventId,
-                                updateTitle,
-                                updateDescription,
-                                updateStartDate,
-                                updateEndDate,
-                            });
-                            onClose();
-                        }}
-                    >
-                        イベントを更新
-                    </Button>
+                    <Flex justifyContent="space-between" flex={1}>
+                        <Button
+                            colorScheme="red"
+                            onClick={() => {
+                                deleteEvent({
+                                    updateEventId,
+                                });
+                                onClose();
+                            }}
+                        >
+                            イベントを削除
+                        </Button>
+                        <Button
+                            colorScheme="blue"
+                            onClick={() => {
+                                updateEvent({
+                                    updateEventId,
+                                    updateTitle,
+                                    updateDescription,
+                                    updateStartDate,
+                                    updateEndDate,
+                                });
+                                onClose();
+                            }}
+                        >
+                            イベントを更新
+                        </Button>
+                    </Flex>
                 </ModalFooter>
             </ModalContent>
         </Modal>

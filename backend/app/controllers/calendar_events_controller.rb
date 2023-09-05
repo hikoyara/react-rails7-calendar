@@ -20,6 +20,12 @@ class CalendarEventsController < ApplicationController
         render json: calendar_event
     end
 
+    def delete
+        calendar_event = CalendarEvent.find(params[:id])
+        calendar_event = calendar_event.destroy!
+        render json: calendar_event
+    end
+
     private
     def calendar_event_params
         params.require(:calendar_event).permit(:title, :description, :start_date, :end_date)

@@ -4,7 +4,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import { Box, Flex, Button, Image, useDisclosure } from "@chakra-ui/react";
 import { CreateEventModal } from "../components/CreateEventModal";
 import { UpdateEventModal } from "../components/UpdateEventModal";
-import { getCalendarEvents, createCalendarEvent, updateCalendarEvent } from "../lib/api/calendarEvent";
+import { getCalendarEvents, createCalendarEvent, updateCalendarEvent, deleteCalendarEvent } from "../lib/api/calendarEvent";
 import { getUser } from "../lib/api/auth.js";
 import { useNavigate } from "react-router-dom";
 
@@ -71,6 +71,10 @@ const Calendar = () => {
         });
         await clearEvents();
     };
+    const deleteEvent = async (event) => {
+        await deleteCalendarEvent(event.updateEventId);
+        await clearEvents();
+    };
     const eventClick = (info) => {
         const zeroPad = (n) => {
             return n < 10 ? "0" + n : n;
@@ -93,7 +97,7 @@ const Calendar = () => {
     return (
         <>
             <CreateEventModal isOpen={isCreateModalOpen} onClose={onCreateModalClose} createEvent={createEvent} />
-            <UpdateEventModal isOpen={isUpdateModalOpen} onClose={onUpdateModalClose} updateEvent={updateEvent} updateTitle={updateTitle} updateDescription={updateDescription} updateStartDate={updateStartDate} updateEndDate={updateEndDate} updateEventId={eventId} setTitle={setTitle} setDescription={setDescription} setStartDate={setStartDate} setEndDate={setEndDate} />
+            <UpdateEventModal isOpen={isUpdateModalOpen} onClose={onUpdateModalClose} updateEvent={updateEvent} updateTitle={updateTitle} updateDescription={updateDescription} updateStartDate={updateStartDate} updateEndDate={updateEndDate} updateEventId={eventId} setTitle={setTitle} setDescription={setDescription} setStartDate={setStartDate} setEndDate={setEndDate} deleteEvent={deleteEvent} />
             <Flex justifyContent="center" mt="16px">
                 <Flex w="200px" justifyContent="center" alignItems="center" flexDirection="column">
                     <Button w="80%" colorScheme="blue" onClick={onCreateModalOpen}>

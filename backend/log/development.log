@@ -537,3 +537,750 @@ Processing by CalendarEventsController#index as HTML
 Completed 200 OK in 12ms (Views: 2.7ms | ActiveRecord: 1.4ms | Allocations: 3081)
 
 
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE DATABASE `api_development` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE DATABASE `api_test` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (3.9ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.6ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.1ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.1ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (13.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS `api_development`[0m
+  [1m[35m (2.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS `api_test`[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE DATABASE `api_development` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE DATABASE `api_test` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (7.5ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  [1m[35m (7.1ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT GET_LOCK('5878493172211724820', 0)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Migrating to DeviseTokenAuthCreateUsers (20230821091440)
+  [1m[35m (9.0ms)[0m  [1m[35mCREATE TABLE `users` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `provider` varchar(255) DEFAULT 'email' NOT NULL, `uid` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime(6), `allow_password_change` tinyint(1) DEFAULT FALSE, `remember_created_at` datetime(6), `confirmation_token` varchar(255), `confirmed_at` datetime(6), `confirmation_sent_at` datetime(6), `unconfirmed_email` varchar(255), `name` varchar(255), `nickname` varchar(255), `image` varchar(255), `email` varchar(255), `tokens` text, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[35m (9.1ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_email` ON `users` (`email`)[0m
+  [1m[35m (9.0ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_uid_and_provider` ON `users` (`uid`, `provider`)[0m
+  [1m[35m (8.1ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_reset_password_token` ON `users` (`reset_password_token`)[0m
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_confirmation_token` ON `users` (`confirmation_token`)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20230821091440')[0m
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCalendarEvents (20230824005518)
+  [1m[35m (10.0ms)[0m  [1m[35mCREATE TABLE `calendar_events` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `title` varchar(255), `description` varchar(255), `start_date` varchar(255), `end_date` varchar(255), `user_id` bigint, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, INDEX `index_calendar_events_on_user_id` (`user_id`), CONSTRAINT `fk_rails_930e3c0bf4`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20230824005518')[0m
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2023-09-05 05:38:53.934378', '2023-09-05 05:38:53.934378')[0m
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT RELEASE_LOCK('5878493172211724820')[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Started POST "/auth/sign_in" for 172.18.0.1 at 2023-09-05 05:41:37 +0000
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"user1@test.com", "password"=>"[FILTERED]", "session"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :session. Context: { controller: DeviseTokenAuth::SessionsController, action: create, request: #<ActionDispatch::Request:0x0000ffffb31e8490>, params: {"email"=>"user1@test.com", "password"=>"[FILTERED]", "controller"=>"devise_token_auth/sessions", "action"=>"create", "session"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]"}} }[0m
+[31mUnpermitted parameter: :session. Context: { controller: DeviseTokenAuth::SessionsController, action: create, request: #<ActionDispatch::Request:0x0000ffffb31e8490>, params: {"email"=>"user1@test.com", "password"=>"[FILTERED]", "controller"=>"devise_token_auth/sessions", "action"=>"create", "session"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]"}} }[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE (BINARY `email` = 'user1@test.com' AND provider= 'email') ORDER BY `users`.`id` ASC LIMIT 1[0m
+Completed 401 Unauthorized in 158ms (Views: 0.2ms | ActiveRecord: 1.5ms | Allocations: 15608)
+
+
+Started POST "/auth/sign_in" for 172.18.0.1 at 2023-09-05 05:41:40 +0000
+Processing by DeviseTokenAuth::SessionsController#create as HTML
+  Parameters: {"email"=>"user1@test.com", "password"=>"[FILTERED]", "session"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :session. Context: { controller: DeviseTokenAuth::SessionsController, action: create, request: #<ActionDispatch::Request:0x0000ffffb5399760>, params: {"email"=>"user1@test.com", "password"=>"[FILTERED]", "controller"=>"devise_token_auth/sessions", "action"=>"create", "session"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]"}} }[0m
+[31mUnpermitted parameter: :session. Context: { controller: DeviseTokenAuth::SessionsController, action: create, request: #<ActionDispatch::Request:0x0000ffffb5399760>, params: {"email"=>"user1@test.com", "password"=>"[FILTERED]", "controller"=>"devise_token_auth/sessions", "action"=>"create", "session"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]"}} }[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE (BINARY `email` = 'user1@test.com' AND provider= 'email') ORDER BY `users`.`id` ASC LIMIT 1[0m
+Completed 401 Unauthorized in 8ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 1378)
+
+
+Started POST "/auth" for 172.18.0.1 at 2023-09-05 05:41:49 +0000
+Processing by Auth::RegistrationsController#create as HTML
+  Parameters: {"email"=>"user1@test.com", "password"=>"[FILTERED]", "registration"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :registration. Context: { controller: Auth::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x0000ffffb444e260>, params: {"email"=>"user1@test.com", "password"=>"[FILTERED]", "controller"=>"auth/registrations", "action"=>"create", "registration"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]"}} }[0m
+[31mUnpermitted parameter: :registration. Context: { controller: Auth::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x0000ffffb444e260>, params: {"email"=>"user1@test.com", "password"=>"[FILTERED]", "controller"=>"auth/registrations", "action"=>"create", "registration"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]"}} }[0m
+[31mUnpermitted parameter: :registration. Context: { controller: Auth::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x0000ffffb444e260>, params: {"email"=>"user1@test.com", "password"=>"[FILTERED]", "controller"=>"auth/registrations", "action"=>"create", "registration"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`email` = 'user1@test.com' AND `users`.`provider` = 'email' LIMIT 1[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO `users` (`provider`, `uid`, `encrypted_password`, `reset_password_token`, `reset_password_sent_at`, `allow_password_change`, `remember_created_at`, `confirmation_token`, `confirmed_at`, `confirmation_sent_at`, `unconfirmed_email`, `name`, `nickname`, `image`, `email`, `tokens`, `created_at`, `updated_at`) VALUES ('email', 'user1@test.com', '$2a$12$mpVHcJzhnvmVib/PLxW3Ie/hOFHLEW4iFbx5YBUTF8roPvnpk2slC', NULL, NULL, FALSE, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'user1@test.com', NULL, '2023-09-05 05:41:49.880767', '2023-09-05 05:41:49.880767')[0m
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Update (0.4ms)[0m  [1m[33mUPDATE `users` SET `users`.`tokens` = '{\"bEX1MqHYb-9rHi0CcmWgjQ\":{\"token\":\"$2a$10$RLuFsrArqd5KhG5ao98kTeRyFmh/uTtNxWsgtGQ5KWl42dhb3m5pu\",\"expiry\":1695102109}}', `users`.`updated_at` = '2023-09-05 05:41:49.942159' WHERE `users`.`id` = 1[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 327ms (Views: 0.1ms | ActiveRecord: 7.4ms | Allocations: 22313)
+
+
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 05:41:50 +0000
+Processing by Auth::SessionsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 61ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 2515)
+
+
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 05:41:50 +0000
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 05:41:50 +0000
+Processing by Auth::SessionsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 8ms (Views: 0.2ms | ActiveRecord: 3.4ms | Allocations: 2420)
+
+
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.2ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 25ms (Views: 1.2ms | ActiveRecord: 1.5ms | Allocations: 4940)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 05:41:50 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.2ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 5ms (Views: 1.7ms | ActiveRecord: 0.8ms | Allocations: 2844)
+
+
+Started POST "/auth/sign_in" for 172.18.0.1 at 2023-09-05 05:46:05 +0000
+Processing by DeviseTokenAuth::SessionsController#create as */*
+  Parameters: {"email"=>"user1@test.com", "password"=>"[FILTERED]", "session"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :session. Context: { controller: DeviseTokenAuth::SessionsController, action: create, request: #<ActionDispatch::Request:0x0000ffffb3ee3208>, params: {"email"=>"user1@test.com", "password"=>"[FILTERED]", "controller"=>"devise_token_auth/sessions", "action"=>"create", "session"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]"}} }[0m
+[31mUnpermitted parameter: :session. Context: { controller: DeviseTokenAuth::SessionsController, action: create, request: #<ActionDispatch::Request:0x0000ffffb3ee3208>, params: {"email"=>"user1@test.com", "password"=>"[FILTERED]", "controller"=>"devise_token_auth/sessions", "action"=>"create", "session"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]"}} }[0m
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE (BINARY `email` = 'user1@test.com' AND provider= 'email') ORDER BY `users`.`id` ASC LIMIT 1[0m
+[31mUnpermitted parameter: :session. Context: { controller: DeviseTokenAuth::SessionsController, action: create, request: #<ActionDispatch::Request:0x0000ffffb3ee3208>, params: {"email"=>"user1@test.com", "password"=>"[FILTERED]", "controller"=>"devise_token_auth/sessions", "action"=>"create", "session"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]"}} }[0m
+[31mUnpermitted parameter: :session. Context: { controller: DeviseTokenAuth::SessionsController, action: create, request: #<ActionDispatch::Request:0x0000ffffb3ee3208>, params: {"email"=>"user1@test.com", "password"=>"[FILTERED]", "controller"=>"devise_token_auth/sessions", "action"=>"create", "session"=>{"email"=>"user1@test.com", "password"=>"[FILTERED]"}} }[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[37mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1 FOR UPDATE[0m
+  [1m[36mUser Update (1.3ms)[0m  [1m[33mUPDATE `users` SET `users`.`tokens` = '{\"bEX1MqHYb-9rHi0CcmWgjQ\":{\"token\":\"$2a$10$RLuFsrArqd5KhG5ao98kTeRyFmh/uTtNxWsgtGQ5KWl42dhb3m5pu\",\"expiry\":1695102109},\"rUs0GRm7DT9NRdctbeHLMg\":{\"token\":\"$2a$10$1fhfWAfYXorW3N95VP2XZu8C3YZu9lFmSlKSTpI0xu5zQrujQ6YYO\",\"expiry\":1695102365}}', `users`.`updated_at` = '2023-09-05 05:46:05.702275' WHERE `users`.`id` = 1[0m
+  [1m[36mTRANSACTION (5.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 320ms (Views: 0.4ms | ActiveRecord: 11.0ms | Allocations: 7504)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 05:46:05 +0000
+Processing by CalendarEventsController#index as */*
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.6ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 93ms (Views: 2.9ms | ActiveRecord: 3.0ms | Allocations: 2873)
+
+
+Started POST "/calendar_events" for 172.18.0.1 at 2023-09-05 05:57:42 +0000
+Processing by CalendarEventsController#create as */*
+  Parameters: {"calendar_event"=>{"title"=>"テスト1", "description"=>"テスト用です", "start_date"=>"2023-09-05", "end_date"=>"2023-09-05"}}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/calendar_events_controller.rb:13:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:13:in `create'
+  [1m[36mCalendarEvent Create (1.0ms)[0m  [1m[32mINSERT INTO `calendar_events` (`title`, `description`, `start_date`, `end_date`, `user_id`, `created_at`, `updated_at`) VALUES ('テスト1', 'テスト用です', '2023-09-05', '2023-09-05', 1, '2023-09-05 05:57:42.188891', '2023-09-05 05:57:42.188891')[0m
+  ↳ app/controllers/calendar_events_controller.rb:13:in `create'
+  [1m[36mTRANSACTION (2.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/calendar_events_controller.rb:13:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 118ms (Views: 0.4ms | ActiveRecord: 10.8ms | Allocations: 14638)
+
+
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 05:57:48 +0000
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 05:57:48 +0000
+Processing by Auth::SessionsController#index as HTML
+Processing by Auth::SessionsController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+Completed 200 OK in 8ms (Views: 0.5ms | ActiveRecord: 1.2ms | Allocations: 2225)
+
+
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 13ms (Views: 0.4ms | ActiveRecord: 3.0ms | Allocations: 4639)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 05:57:48 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.3ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 6ms (Views: 2.5ms | ActiveRecord: 1.0ms | Allocations: 2981)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 05:57:48 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.3ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 7ms (Views: 2.0ms | ActiveRecord: 1.0ms | Allocations: 2970)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 05:58:02 +0000
+Processing by CalendarEventsController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.6ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 12ms (Views: 3.2ms | ActiveRecord: 2.1ms | Allocations: 3064)
+
+
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 06:49:03 +0000
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 06:49:03 +0000
+  [1m[36mActiveRecord::SchemaMigration Pluck (4.2ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Auth::SessionsController#index as HTML
+Processing by Auth::SessionsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 97ms (Views: 0.4ms | ActiveRecord: 4.7ms | Allocations: 18043)
+
+
+Completed 200 OK in 93ms (Views: 0.1ms | ActiveRecord: 2.6ms | Allocations: 18445)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 06:49:03 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.5ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 18ms (Views: 3.9ms | ActiveRecord: 2.3ms | Allocations: 8587)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 06:49:03 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.2ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 6ms (Views: 1.9ms | ActiveRecord: 0.9ms | Allocations: 2970)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 06:49:35 +0000
+Processing by CalendarEventsController#index as */*
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.7ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 80ms (Views: 2.4ms | ActiveRecord: 2.5ms | Allocations: 3007)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 07:19:09 +0000
+Processing by CalendarEventsController#index as */*
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.6ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 25ms (Views: 4.3ms | ActiveRecord: 3.6ms | Allocations: 3212)
+
+
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 07:19:10 +0000
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 07:19:10 +0000
+Processing by Auth::SessionsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+Processing by Auth::SessionsController#index as HTML
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+Completed 200 OK in 11ms (Views: 0.5ms | ActiveRecord: 1.2ms | Allocations: 2689)
+
+
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 17ms (Views: 0.2ms | ActiveRecord: 1.4ms | Allocations: 4119)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 07:19:10 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.3ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 5ms (Views: 1.5ms | ActiveRecord: 0.9ms | Allocations: 2970)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 07:19:10 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.4ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 8ms (Views: 2.6ms | ActiveRecord: 1.3ms | Allocations: 2970)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 07:19:34 +0000
+Processing by CalendarEventsController#index as */*
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.6ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 12ms (Views: 2.6ms | ActiveRecord: 2.1ms | Allocations: 3068)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 07:47:32 +0000
+Processing by CalendarEventsController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.3ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 10ms (Views: 2.6ms | ActiveRecord: 1.5ms | Allocations: 3191)
+
+
+Started DELETE "/calendar_events/1" for 172.18.0.1 at 2023-09-05 07:47:37 +0000
+  
+ActionController::RoutingError (No route matches [DELETE] "/calendar_events/1"):
+  
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 07:47:44 +0000
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 07:47:44 +0000
+Processing by Auth::SessionsController#index as HTML
+Processing by Auth::SessionsController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+Completed 200 OK in 7ms (Views: 0.5ms | ActiveRecord: 1.2ms | Allocations: 2615)
+
+
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 10ms (Views: 0.3ms | ActiveRecord: 2.4ms | Allocations: 4505)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 07:47:44 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.2ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 5ms (Views: 1.1ms | ActiveRecord: 0.7ms | Allocations: 2971)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 07:47:44 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.4ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 7ms (Views: 1.7ms | ActiveRecord: 1.1ms | Allocations: 2970)
+
+
+Started DELETE "/calendar_events/1" for 172.18.0.1 at 2023-09-05 07:52:28 +0000
+  
+ActionController::RoutingError (No route matches [DELETE] "/calendar_events/1"):
+  
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 07:56:18 +0000
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 07:56:18 +0000
+Processing by Auth::SessionsController#index as HTML
+Processing by Auth::SessionsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 67ms (Views: 0.3ms | ActiveRecord: 1.0ms | Allocations: 7742)
+
+
+Completed 200 OK in 67ms (Views: 0.2ms | ActiveRecord: 2.8ms | Allocations: 8466)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 07:56:18 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.3ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 10ms (Views: 2.3ms | ActiveRecord: 0.9ms | Allocations: 5778)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 07:56:18 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.4ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 6ms (Views: 2.0ms | ActiveRecord: 1.1ms | Allocations: 2970)
+
+
+Started DELETE "/calendar_events/1" for 172.18.0.1 at 2023-09-05 07:56:23 +0000
+Processing by CalendarEventsController#delete as */*
+  Parameters: {"id"=>"1", "calendar_event"=>{}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.3ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:24:in `delete'
+Completed 400 Bad Request in 91ms (ActiveRecord: 1.3ms | Allocations: 1929)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: calendar_event):
+  
+app/controllers/calendar_events_controller.rb:31:in `calendar_event_params'
+app/controllers/calendar_events_controller.rb:25:in `delete'
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 08:06:06 +0000
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 08:06:06 +0000
+Processing by Auth::SessionsController#index as HTML
+Processing by Auth::SessionsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 68ms (Views: 0.1ms | ActiveRecord: 0.8ms | Allocations: 8465)
+
+
+Completed 200 OK in 68ms (Views: 0.3ms | ActiveRecord: 1.6ms | Allocations: 7742)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 08:06:06 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.4ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 10ms (Views: 2.4ms | ActiveRecord: 1.0ms | Allocations: 5777)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 08:06:06 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.5ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 7ms (Views: 2.3ms | ActiveRecord: 1.2ms | Allocations: 2970)
+
+
+Started DELETE "/calendar_events/1" for 172.18.0.1 at 2023-09-05 08:06:11 +0000
+Processing by CalendarEventsController#delete as */*
+  Parameters: {"id"=>"1", "calendar_event"=>{}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.3ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:24:in `delete'
+Completed 400 Bad Request in 89ms (ActiveRecord: 1.1ms | Allocations: 1874)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: calendar_event):
+  
+app/controllers/calendar_events_controller.rb:31:in `calendar_event_params'
+app/controllers/calendar_events_controller.rb:25:in `delete'
+Started DELETE "/calendar_events/1" for 172.18.0.1 at 2023-09-05 08:09:10 +0000
+Processing by CalendarEventsController#delete as */*
+  Parameters: {"id"=>"1", "calendar_event"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.2ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:24:in `delete'
+Completed 400 Bad Request in 66ms (ActiveRecord: 6.5ms | Allocations: 8824)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: calendar_event):
+  
+app/controllers/calendar_events_controller.rb:31:in `calendar_event_params'
+app/controllers/calendar_events_controller.rb:25:in `delete'
+Started DELETE "/calendar_events/1" for 172.18.0.1 at 2023-09-05 08:15:07 +0000
+Processing by CalendarEventsController#delete as */*
+  Parameters: {"id"=>"1", "calendar_event"=>{}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.3ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:24:in `delete'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/calendar_events_controller.rb:25:in `delete'
+  [1m[36mCalendarEvent Destroy (0.7ms)[0m  [1m[31mDELETE FROM `calendar_events` WHERE `calendar_events`.`id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:25:in `delete'
+  [1m[36mTRANSACTION (2.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/calendar_events_controller.rb:25:in `delete'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 73ms (Views: 0.3ms | ActiveRecord: 4.7ms | Allocations: 10981)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 08:15:12 +0000
+Processing by CalendarEventsController#index as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.3ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 9ms (Views: 2.1ms | ActiveRecord: 1.5ms | Allocations: 2976)
+
+
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 08:15:15 +0000
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 08:15:15 +0000
+Processing by Auth::SessionsController#index as HTML
+Processing by Auth::SessionsController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 68ms (Views: 0.3ms | ActiveRecord: 1.3ms | Allocations: 2842)
+
+
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 71ms (Views: 0.2ms | ActiveRecord: 1.5ms | Allocations: 4632)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 08:15:15 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.3ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 5ms (Views: 1.1ms | ActiveRecord: 0.8ms | Allocations: 2847)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 08:15:15 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.2ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 6ms (Views: 1.5ms | ActiveRecord: 0.9ms | Allocations: 2847)
+
+
+Started POST "/calendar_events" for 172.18.0.1 at 2023-09-05 08:17:06 +0000
+Processing by CalendarEventsController#create as HTML
+  Parameters: {"title"=>"テスト", "description"=>"テストです", "start_date"=>"2023-09-05", "end_date"=>"2023-09-06", "calendar_event"=>{"title"=>"テスト", "description"=>"テストです", "start_date"=>"2023-09-05", "end_date"=>"2023-09-06"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/calendar_events_controller.rb:13:in `create'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:13:in `create'
+  [1m[36mCalendarEvent Create (0.7ms)[0m  [1m[32mINSERT INTO `calendar_events` (`title`, `description`, `start_date`, `end_date`, `user_id`, `created_at`, `updated_at`) VALUES ('テスト', 'テストです', '2023-09-05', '2023-09-06', 1, '2023-09-05 08:17:06.463373', '2023-09-05 08:17:06.463373')[0m
+  ↳ app/controllers/calendar_events_controller.rb:13:in `create'
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/calendar_events_controller.rb:13:in `create'
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 91ms (Views: 0.2ms | ActiveRecord: 4.5ms | Allocations: 11093)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 08:17:06 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.2ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 5ms (Views: 1.3ms | ActiveRecord: 0.8ms | Allocations: 2971)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 08:17:11 +0000
+Processing by CalendarEventsController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.5ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 11ms (Views: 3.0ms | ActiveRecord: 1.7ms | Allocations: 3069)
+
+
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 08:47:34 +0000
+Processing by Auth::SessionsController#index as HTML
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 14ms (Views: 1.0ms | ActiveRecord: 2.5ms | Allocations: 2096)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 08:47:34 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.3ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 6ms (Views: 2.2ms | ActiveRecord: 0.9ms | Allocations: 2969)
+
+
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 08:52:12 +0000
+Processing by Auth::SessionsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 1.0ms | Allocations: 1984)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 08:52:12 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.2ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 5ms (Views: 1.6ms | ActiveRecord: 0.8ms | Allocations: 2969)
+
+
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 08:53:50 +0000
+Processing by Auth::SessionsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 1984)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 08:53:50 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.2ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 8ms (Views: 1.3ms | ActiveRecord: 0.7ms | Allocations: 2969)
+
+
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 08:55:14 +0000
+Processing by Auth::SessionsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 1985)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 08:55:14 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.4ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 6ms (Views: 1.6ms | ActiveRecord: 1.0ms | Allocations: 2969)
+
+
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 08:55:32 +0000
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 08:55:32 +0000
+Processing by Auth::SessionsController#index as HTML
+Processing by Auth::SessionsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 11ms (Views: 0.3ms | ActiveRecord: 1.5ms | Allocations: 3129)
+
+
+Completed 200 OK in 12ms (Views: 0.8ms | ActiveRecord: 2.9ms | Allocations: 4012)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 08:55:32 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.4ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 5ms (Views: 1.5ms | ActiveRecord: 0.9ms | Allocations: 2970)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 08:55:32 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.4ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 7ms (Views: 2.0ms | ActiveRecord: 1.2ms | Allocations: 2969)
+
+
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 08:58:41 +0000
+Processing by Auth::SessionsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 1984)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 08:58:42 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.2ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 0.7ms | Allocations: 2969)
+
+
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 08:59:44 +0000
+Processing by Auth::SessionsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.6ms | Allocations: 1985)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 08:59:44 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.2ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 5ms (Views: 1.7ms | ActiveRecord: 0.7ms | Allocations: 2970)
+
+
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 09:00:14 +0000
+Started GET "/auth/sessions" for 172.18.0.1 at 2023-09-05 09:00:14 +0000
+Processing by Auth::SessionsController#index as HTML
+Processing by Auth::SessionsController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  ↳ app/controllers/auth/sessions_controller.rb:3:in `index'
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 12ms (Views: 0.3ms | ActiveRecord: 1.7ms | Allocations: 3283)
+
+
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 12ms (Views: 0.3ms | ActiveRecord: 1.4ms | Allocations: 4392)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 09:00:14 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.2ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 5ms (Views: 1.2ms | ActiveRecord: 0.7ms | Allocations: 2969)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 09:00:14 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.5ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 9ms (Views: 3.3ms | ActiveRecord: 1.3ms | Allocations: 2970)
+
+
+Started DELETE "/calendar_events/2" for 172.18.0.1 at 2023-09-05 09:00:16 +0000
+Processing by CalendarEventsController#delete as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.4ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:24:in `delete'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/calendar_events_controller.rb:25:in `delete'
+  [1m[36mCalendarEvent Destroy (1.0ms)[0m  [1m[31mDELETE FROM `calendar_events` WHERE `calendar_events`.`id` = 2[0m
+  ↳ app/controllers/calendar_events_controller.rb:25:in `delete'
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/calendar_events_controller.rb:25:in `delete'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 22ms (Views: 0.3ms | ActiveRecord: 5.4ms | Allocations: 4349)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 09:00:16 +0000
+Processing by CalendarEventsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.4ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 7ms (Views: 1.8ms | ActiveRecord: 1.0ms | Allocations: 2847)
+
+
+Started GET "/calendar_events" for 172.18.0.1 at 2023-09-05 09:00:23 +0000
+Processing by CalendarEventsController#index as */*
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`uid` = 'user1@test.com' LIMIT 1[0m
+  [1m[36mCalendarEvent Load (0.6ms)[0m  [1m[34mSELECT `calendar_events`.* FROM `calendar_events` WHERE `calendar_events`.`user_id` = 1[0m
+  ↳ app/controllers/calendar_events_controller.rb:7:in `index'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+Completed 200 OK in 12ms (Views: 2.6ms | ActiveRecord: 1.9ms | Allocations: 2942)
+
+
